@@ -1,0 +1,32 @@
+Requirements
+
+models
+    User - ok
+        -email
+        -password
+    Workout -ok
+        -name(required)
+        -duration(required)
+        -dateAdded(default:)
+        -status(default:pending)
+
+routes
+    user - ok
+        -register
+        -login
+    workout - ok
+        -addWorkout
+        -getMyWorkouts
+        -updateWorkout
+        -deleteWorkout
+        -completedWorkOutStatus
+controllers
+    user
+        -register
+        -login
+    workout
+        -addWorkout
+        -getMyWorkouts
+        -updateWorkout
+        -deleteWorkout
+        -completedWorkOutStatus
