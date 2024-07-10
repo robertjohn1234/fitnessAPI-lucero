@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+require('dotenv').config();
 const userRoutes = require("./routes/user");
 const workoutRoutes = require('./routes/workout');
 
@@ -9,7 +10,7 @@ const port = 4000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb+srv://admin:admin1234@cluster0.otywiso.mongodb.net/Fitness_Tracker?retryWrites=true&w=majority&appName=Cluster0');
+mongoose.connect(process.env.MONGODB_URI);
 
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));

@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const secret = 'inventoryManagement';
+const secret = process.env.SECRET_KEY;
+require('dotenv').config();
 
 module.exports.createAccessToken = (user) => {
 
