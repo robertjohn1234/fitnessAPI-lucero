@@ -1,8 +1,10 @@
 const Workout = require("../models/Workout");
 
+
 module.exports.addWorkout = (req,res) => {
 
 	let newWorkout = new Workout({
+        userId: req.user.id,
 		name : req.body.name,
 		duration : req.body.duration
 	});
@@ -18,20 +20,20 @@ module.exports.addWorkout = (req,res) => {
 };
 
 module.exports.getAllWorkouts = (req, res) => {
+    const userId = req.user.id;
 
-	Workout.find({})
-	.then(workouts => {
-
-	    if (workouts.length > 0){
-	        return res.status(200).send({ workouts });
-	    }
-	    else {
-
-	        return res.status(200).send({ message: 'No workouts found.' })
-	    }
-
-	}).catch(err => res.status(500).send({ error: 'Error finding workouts.' }));
-
+    Workout.find({ userId })
+        .then(workouts => {
+            if (workouts.length > 0) {
+                return res.status(200).send({ workouts });
+            } else {
+                return res.status(200).send({ message: 'No workouts found for this user.' });
+            }
+        })
+        .catch(err => {
+            console.error('Error finding workouts:', err);
+            return res.status(500).send({ error: 'Error finding workouts.' });
+        });
 };
 
 module.exports.updateWorkout = (req, res) => {
