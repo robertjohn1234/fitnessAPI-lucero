@@ -3,12 +3,14 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const userRoutes = require("./routes/user");
 const workoutRoutes = require('./routes/workout');
+const cors = require('cors');
 
 const app = express();
 const port = 4000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 mongoose.connect(process.env.MONGODB_URI);
 
